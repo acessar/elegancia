@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Joias - Elegância Atemporal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --dark-bg: #1A1510;
+            --dark-secondary: #231C14;
+            --dark-tertiary: #2D2418;
+            --gold: #D4AF37;
+            --gold-light: #F4E4BC;
+            --gold-dark: #B8941F;
+            --accent: #8B4513;
+            --text-light: #F0E6D2;
+            --text-muted: #B8A88A;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 21, 16, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(26, 21, 16, 0.98);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        /* ÍCONE DIAMANTE CSS */
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            animation: diamondFloat 4s ease-in-out infinite;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 15px solid var(--gold);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 25px solid var(--gold);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+        }
+
+        .logo-icon .diamond-shine {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 15px;
+            height: 15px;
+            background: var(--gold-light);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            animation: shine 2s ease-in-out infinite;
+        }
+
+        @keyframes diamondFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); filter: brightness(1); }
+            50% { transform: translateY(-10px) rotate(180deg); filter: brightness(1.3); }
+        }
+
+        @keyframes shine {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            transition: width 0.4s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--gold);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* BOTÕES - 2 FORMATOS PADRONIZADOS */
+        .btn {
+            position: relative;
+            padding: 1rem 2rem;
+            border: 2px solid var(--gold);
+            background: var(--gold);
+            color: var(--dark-bg);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        /* Formato 1 - Retângulo Normal */
+        .btn-primary {
+            border-radius: 0;
+        }
+
+        /* Formato 2 - Retângulo com Lado Inclinado */
+        .btn-secondary {
+            clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+        }
+
+        /* EFEITO 1 - Brilho Horizontal (Retângulo Normal) */
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        /* EFEITO 2 - Brilho Diagonal (Retângulo Inclinado) */
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.7s ease;
+        }
+
+        .btn-secondary:hover::before {
+            left: 200%;
+        }
+
+        .btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Efeito de brilho infinito no mobile/tablet */
+        @media (max-width: 768px) {
+            .btn-primary::before {
+                animation: mobileShineHorizontal 3s linear infinite;
+            }
+
+            .btn-secondary::before {
+                animation: mobileShineAngled 3.5s linear infinite;
+            }
+
+            @keyframes mobileShineHorizontal {
+                0% { left: -100%; }
+                100% { left: 100%; }
+            }
+
+            @keyframes mobileShineAngled {
+                0% { left: -100%; }
+                100% { left: 200%; }
+            }
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-secondary) 50%, var(--dark-tertiary) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(26, 21, 16, 0.7), rgba(26, 21, 16, 0.5)),
+                url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            animation: slowZoom 30s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+            opacity: 0;
+            animation: particleFloat 15s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 25%; animation-delay: 3s; }
+        .particle:nth-child(3) { left: 40%; animation-delay: 6s; }
+        .particle:nth-child(4) { left: 55%; animation-delay: 9s; }
+        .particle:nth-child(5) { left: 70%; animation-delay: 12s; }
+        .particle:nth-child(6) { left: 85%; animation-delay: 2s; }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(10px);
+            color: var(--gold-light);
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.7s forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.9s forwards;
+        }
+
+        .cta-btn {
+            padding: 1.3rem 2.8rem;
+            font-size: 1.1rem;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ELEGANCE */
+        .elegance {
+            background: var(--dark-secondary);
+        }
+
+        .elegance-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .elegance-point {
+            position: relative;
+            background: var(--dark-tertiary);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 95% 100%, 5% 100%, 0% 85%);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .elegance-point::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .elegance-point:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .elegance-point:hover::before {
+            opacity: 1;
+        }
+
+        /* ÍCONES CSS */
+        .crown-icon {
+            width: 80px;
+            height: 60px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .crown-icon .crown-base {
+            position: absolute;
+            bottom: 0;
+            left: 10%;
+            width: 80%;
+            height: 20px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 0 0 5px 5px;
+        }
+
+        .crown-icon .crown-point {
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .crown-icon .crown-point:nth-child(1) { left: 5%; bottom: 15px; }
+        .crown-icon .crown-point:nth-child(2) { left: 30%; bottom: 15px; height: 50px; }
+        .crown-icon .crown-point:nth-child(3) { left: 55%; bottom: 15px; }
+        .crown-icon .crown-point:nth-child(4) { left: 80%; bottom: 15px; height: 45px; }
+
+        .crown-icon .crown-gem {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold-light);
+            animation: gemPulse 2s ease-in-out infinite;
+        }
+
+        .crown-icon .crown-gem:nth-child(6) { top: 5px; left: 35%; }
+        .crown-icon .crown-gem:nth-child(7) { top: 15px; left: 60%; animation-delay: 0.5s; }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gemPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        .certificate-icon {
+            width: 70px;
+            height: 90px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .certificate-icon .cert-paper {
+            position: absolute;
+            top: 0;
+            left: 10%;
+            width: 80%;
+            height: 75%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            border-radius: 3px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .certificate-icon .cert-line {
+            position: absolute;
+            left: 20%;
+            width: 60%;
+            height: 2px;
+            background: var(--gold-light);
+        }
+
+        .certificate-icon .cert-line:nth-child(2) { top: 20%; }
+        .certificate-icon .cert-line:nth-child(3) { top: 35%; }
+        .certificate-icon .cert-line:nth-child(4) { top: 50%; width: 40%; left: 30%; }
+
+        .certificate-icon .cert-seal {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 35px;
+            height: 35px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            box-shadow: 0 3px 15px rgba(212, 175, 55, 0.5);
+            animation: sealRotate 4s linear infinite;
+        }
+
+        @keyframes sealRotate {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
+        .star-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            position: relative;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        .star-icon .star-shape {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 50px solid var(--gold);
+        }
+
+        .star-icon .star-shape::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: -30px;
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 50px solid var(--gold);
+        }
+
+        .star-icon .star-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
+            animation: starGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes starGlow {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.2); }
+        }
+
+        .elegance-point h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 2vw, 1.6rem);
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .elegance-point p {
+            color: var(--text-muted);
+            font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+            line-height: 1.7;
+        }
+
+        /* COLLECTIONS */
+        .collections {
+            background: var(--dark-bg);
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .collection-card {
+            position: relative;
+            background: var(--dark-tertiary);
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.5s ease;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 95% 100%, 5% 100%, 0% 90%);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .collection-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .collection-card:hover::after {
+            left: 100%;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-20px);
+            border-color: var(--gold);
+            box-shadow: 0 25px 70px rgba(212, 175, 55, 0.2);
+        }
+
+        .collection-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .collection-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(26, 21, 16, 0.5), rgba(26, 21, 16, 0.3));
+        }
+
+        .collection-image.aneis {
+            background-image: url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .collection-image.colares {
+            background-image: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2070&q=80');
+        }
+
+        .collection-image.brincos {
+            background-image: url('https://images.unsplash.com/photo-1596944924617-727222641454?auto=format&fit=crop&w=1887&q=80');
+        }
+
+        .collection-image.pulseiras {
+            background-image: url('https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=2069&q=80');
+        }
+
+        .collection-content {
+            padding: 2rem 1.5rem;
+        }
+
+        .collection-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .collection-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .collection-price {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .collection-btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* SCROLL ANIMATIONS */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scroll-scale {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .scroll-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ABOUT */
+        .about {
+            background: var(--dark-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .about-text p {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            margin-bottom: 1.8rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--dark-tertiary);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+        }
+
+        .value-item i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .value-item h4 {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .about-image {
+            background: 
+                linear-gradient(rgba(26, 21, 16, 0.5), rgba(212, 175, 55, 0.2)),
+                url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .about-stats {
+            background: rgba(35, 28, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid var(--gold);
+        }
+
+        .about-stats h4 {
+            font-size: clamp(1.3rem, 2vw, 1.5rem);
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .about-stats p {
+            color: var(--text-muted);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials {
+            background: var(--dark-bg);
+        }
+
+        .testimonials-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 2rem 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--dark-tertiary);
+        }
+
+        .testimonials-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .testimonials-container::-webkit-scrollbar-track {
+            background: var(--dark-tertiary);
+        }
+
+        .testimonials-container::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        .testimonial {
+            min-width: 350px;
+            background: var(--dark-tertiary);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            scroll-snap-align: start;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            background-size: cover;
+            background-position: center;
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .testimonial-avatar.avatar-1 {
+            background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=687&q=80');
+        }
+
+        .testimonial-avatar.avatar-2 {
+            background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=1170&q=80');
+        }
+
+        .testimonial-avatar.avatar-3 {
+            background-image: url('https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=1361&q=80');
+        }
+
+        .testimonial-avatar.avatar-4 {
+            background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=687&q=80');
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--gold);
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+        }
+
+        .stars {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* GALLERY */
+        .gallery {
+            background: var(--dark-secondary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(26, 21, 16, 0.9) 100%);
+            opacity: 1;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-caption {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+
+        /* CONTACT */
+        .contact {
+            background: var(--dark-bg);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            font-size: clamp(1.5rem, 2vw, 2rem);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--dark-tertiary);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            border-color: var(--gold);
+        }
+
+        .contact-item i {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+            font-size: clamp(0.95rem, 1.5vw, 1rem);
+        }
+
+        .contact-item div {
+            font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+        }
+
+        .contact-form {
+            background: var(--dark-tertiary);
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: var(--dark-bg);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            justify-content: center;
+            padding: 1.3rem 2rem;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--dark-secondary);
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--dark-tertiary);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--gold);
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            text-align: left;
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            font-weight: 600;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .faq-question i {
+            color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 2rem 1.5rem;
+            color: var(--text-muted);
+            font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+        }
+
+        .footer-section p {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.6;
+        }
+
+        .footer-section a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--dark-tertiary);
+            color: var(--gold);
+            font-size: 1.1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: var(--text-muted);
+            font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+        }
+
+        /* RESPONSIVE PROFISSIONAL */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+
+            .nav {
+                padding: 1.2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                height: 350px;
+            }
+
+            .about-values {
+                gap: 1.2rem;
+            }
+
+            .section-header {
+                margin-bottom: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .nav-actions {
+                gap: 0.5rem;
+            }
+
+            .nav-actions .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 100%;
+                justify-content: center;
+            }
+
+            .elegance-points {
+                gap: 1.5rem;
+            }
+
+            .collections-grid {
+                gap: 1.5rem;
+            }
+
+            .collection-image {
+                height: 200px;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .testimonial {
+                min-width: 280px;
+                padding: 2rem 1.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .contact-item {
+                padding: 1.2rem;
+                gap: 1rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .faq-question {
+                padding: 1.2rem 1.5rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem 1.2rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+
+            /* Efeitos fixos no mobile */
+            .elegance-point,
+            .collection-card,
+            .gallery-item {
+                border-color: var(--gold);
+            }
+
+            .elegance-point::before {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .nav-actions .btn {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.85rem;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 2rem;
+            }
+
+            .hero-badge {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .elegance-points,
+            .collections-grid {
+                gap: 1rem;
+            }
+
+            .elegance-point,
+            .collection-card {
+                padding: 1.5rem;
+            }
+
+            .crown-icon,
+            .certificate-icon,
+            .star-icon {
+                transform: scale(0.8);
+            }
+
+            .collection-image {
+                height: 180px;
+            }
+
+            .collection-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 1.5rem 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.2rem;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 0.9rem 1rem;
+            }
+
+            .footer {
+                padding: 3rem 0 1.5rem;
+            }
+
+            .footer-content {
+                gap: 1.5rem;
+            }
+
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .testimonial {
+                min-width: 260px;
+            }
+
+            .nav-actions .btn span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <div class="diamond-shine"></div>
+                </div>
+                Lumière Joias
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#colecoes" class="nav-link">Coleções</a></li>
+                <li><a href="#sobre" class="nav-link">Nossa História</a></li>
+                <li><a href="#depoimentos" class="nav-link">Clientes</a></li>
+                <li><a href="#contato" class="nav-link">Atendimento</a></li>
+            </ul>
+            
+            <div class="nav-actions">
+                <a href="https://wa.me/5583999998888" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="#contato" class="btn btn-primary">
+                    <i class="fas fa-crown"></i>
+                    <span>Consultoria</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">Há 25 anos criando momentos únicos</div>
+            <h1 class="hero-title">Elegância Atemporal em Cada Detalhe</h1>
+            <p class="hero-subtitle">
+                Transformamos momentos especiais em memórias eternas. Cada joia conta uma história, 
+                cada design carrega uma emoção.
+            </p>
+            <div class="hero-ctas">
+                <a href="#contato" class="btn btn-primary cta-btn">
+                    <i class="fas fa-crown"></i>
+                    Consultoria Personalizada
+                </a>
+                <a href="#colecoes" class="btn btn-secondary cta-btn">
+                    <i class="fas fa-gem"></i>
+                    Descobrir Coleções
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section elegance">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <div class="section-badge">Nossa Essência</div>
+                <h2 class="section-title">O Que Nos Torna Únicos</h2>
+                <p class="section-subtitle">
+                    Cada peça é criada com paixão, dedicação e expertise que atravessa gerações.
+                </p>
+            </div>
+            
+            <div class="elegance-points">
+                <div class="elegance-point scroll-scale">
+                    <div class="crown-icon">
+                        <div class="crown-point"></div>
+                        <div class="crown-point"></div>
+                        <div class="crown-point"></div>
+                        <div class="crown-point"></div>
+                        <div class="crown-base"></div>
+                        <div class="crown-gem"></div>
+                        <div class="crown-gem"></div>
+                    </div>
+                    <h3>Exclusividade Absoluta</h3>
+                    <p>Cada joia é única, criada especialmente para você. Nossos designs exclusivos garantem que sua peça seja verdadeiramente especial.</p>
+                </div>
+                
+                <div class="elegance-point scroll-scale">
+                    <div class="certificate-icon">
+                        <div class="cert-paper"></div>
+                        <div class="cert-line"></div>
+                        <div class="cert-line"></div>
+                        <div class="cert-line"></div>
+                        <div class="cert-seal"></div>
+                    </div>
+                    <h3>Materiais Premium</h3>
+                    <p>Trabalhamos apenas com ouro 18k, diamantes certificados e pedras preciosas selecionadas.</p>
+                </div>
+                
+                <div class="elegance-point scroll-scale">
+                    <div class="star-icon">
+                        <div class="star-glow"></div>
+                        <div class="star-shape"></div>
+                    </div>
+                    <h3>Artesania Refinada</h3>
+                    <p>Nossa equipe combina técnicas tradicionais com tecnologia moderna para criar peças de beleza incomparável.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section collections" id="colecoes">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <div class="section-badge">Coleções Exclusivas</div>
+                <h2 class="section-title">Nossas Criações Mais Desejadas</h2>
+                <p class="section-subtitle">
+                    Explore nossas coleções cuidadosamente curadas, onde cada peça é uma obra de arte.
+                </p>
+            </div>
+            
+            <div class="collections-grid">
+                <div class="collection-card scroll-reveal-left">
+                    <div class="collection-image aneis"></div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Anéis de Compromisso</h3>
+                        <p class="collection-description">
+                            Selos eternos de amor. Criados com diamantes de corte perfeito e ouro 18k.
+                        </p>
+                        <div class="collection-price">A partir de R$ 4.200</div>
+                        <button class="btn btn-primary collection-btn">Explorar Coleção</button>
+                    </div>
+                </div>
+                
+                <div class="collection-card scroll-reveal">
+                    <div class="collection-image colares"></div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Colares de Luxo</h3>
+                        <p class="collection-description">
+                            Peças statement que realçam sua elegância natural.
+                        </p>
+                        <div class="collection-price">A partir de R$ 2.800</div>
+                        <button class="btn btn-primary collection-btn">Explorar Coleção</button>
+                    </div>
+                </div>
+                
+                <div class="collection-card scroll-reveal-right">
+                    <div class="collection-image brincos"></div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Brincos Exclusivos</h3>
+                        <p class="collection-description">
+                            Complementos perfeitos para qualquer ocasião.
+                        </p>
+                        <div class="collection-price">A partir de R$ 1.800</div>
+                        <button class="btn btn-primary collection-btn">Explorar Coleção</button>
+                    </div>
+                </div>
+                
+                <div class="collection-card scroll-reveal-left">
+                    <div class="collection-image pulseiras"></div>
+                    <div class="collection-content">
+                        <h3 class="collection-title">Pulseiras Artesanais</h3>
+                        <p class="collection-description">
+                            Obras de arte que adornam seus pulsos.
+                        </p>
+                        <div class="collection-price">A partir de R$ 2.200</div>
+                        <button class="btn btn-primary collection-btn">Explorar Coleção</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section about" id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text scroll-reveal-left">
+                    <div class="section-badge">Nossa Tradição</div>
+                    <h2>Uma Jornada de Paixão e Excelência</h2>
+                    <p>
+                        Há mais de 25 anos, nossa família se dedica à arte da joalheria, criando peças que 
+                        transcendem o tempo.
+                    </p>
+                    <p>
+                        Nossa expertise combina técnicas tradicionais com inovação e design contemporâneo.
+                    </p>
+                    
+                    <div class="about-values">
+                        <div class="value-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Paixão</h4>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Confiança</h4>
+                        </div>
+                        <div class="value-item">
+                            <i class="fas fa-crown"></i>
+                            <h4>Excelência</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image scroll-reveal-right">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <div class="section-badge">Depoimentos</div>
+                <h2 class="section-title">Histórias que Nos Inspiram</h2>
+            </div>
+            
+            <div class="testimonials-container">
+                <div class="testimonial scroll-scale">
+                    <div class="testimonial-avatar avatar-1"></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Meu anel de noivado é simplesmente perfeito! A Lumière captou exatamente o que eu sonhava."
+                    </p>
+                    <div class="testimonial-author">Isabella Ferreira</div>
+                </div>
+                
+                <div class="testimonial scroll-scale">
+                    <div class="testimonial-avatar avatar-2"></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "A peça personalizada superou todas as expectativas. Qualidade impecável!"
+                    </p>
+                    <div class="testimonial-author">Ricardo Almeida</div>
+                </div>
+                
+                <div class="testimonial scroll-scale">
+                    <div class="testimonial-avatar avatar-3"></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Sou cliente há anos. A Lumière é sinônimo de excelência!"
+                    </p>
+                    <div class="testimonial-author">Carolina Santos</div>
+                </div>
+
+                <div class="testimonial scroll-scale">
+                    <div class="testimonial-avatar avatar-4"></div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "A experiência foi inesquecível!"
+                    </p>
+                    <div class="testimonial-author">André Oliveira</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gallery">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <div class="section-badge">Galeria</div>
+                <h2 class="section-title">Momentos Preciosos</h2>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item scroll-scale">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=2070&q=80" alt="Anel">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Anel solitário em ouro 18k</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-scale">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=2070&q=80" alt="Colar">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Colar exclusivo com safiras</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-scale">
+                    <img src="https://images.unsplash.com/photo-1596944924617-727222641454?auto=format&fit=crop&w=1887&q=80" alt="Brincos">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Brincos artesanais</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-scale">
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=2069&q=80" alt="Pulseira">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Pulseira tennis</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-scale">
+                    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bbd1d6?auto=format&fit=crop&w=1887&q=80" alt="Conjunto">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Conjunto personalizado</div>
+                    </div>
+                </div>
+                
+                <div class="gallery-item scroll-scale">
+                    <img src="https://images.unsplash.com/photo-1551698618-1dfe5d97d256?auto=format&fit=crop&w=2070&q=80" alt="Ateliê">
+                    <div class="gallery-overlay">
+                        <div class="gallery-caption">Nosso ateliê</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section contact" id="contato">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <div class="section-badge">Atendimento VIP</div>
+                <h2 class="section-title">Consultoria Personalizada</h2>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info scroll-reveal-left">
+                    <h3>Como nos Encontrar</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Showroom Exclusivo</strong><br>
+                            Av. Epitácio Pessoa, 1542 - Tambaú<br>
+                            João Pessoa - PB
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Telefone</strong><br>
+                            (83) 3344-5566
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp VIP</strong><br>
+                            (83) 99988-7766
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Horário</strong><br>
+                            Segunda a Sexta: 9h às 18h<br>
+                            Sábados: 9h às 15h
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contact-form scroll-reveal-right" id="contact-form">
+                    <div class="form-group">
+                        <label for="nome">Seu Nome</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interesse">Interesse</label>
+                        <select id="interesse" name="interesse" required>
+                            <option value="">Selecione...</option>
+                            <option value="anel">Anel de Compromisso</option>
+                            <option value="aliancas">Alianças</option>
+                            <option value="colar">Colar de Luxo</option>
+                            <option value="brincos">Brincos</option>
+                            <option value="pulseira">Pulseira</option>
+                            <option value="personalizada">Peça Personalizada</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="telefone">WhatsApp</label>
+                        <input type="tel" id="telefone" name="telefone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary submit-btn">
+                        <i class="fas fa-crown"></i>
+                        Agendar Consultoria
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section faq">
+        <div class="container">
+            <div class="section-header scroll-reveal">
+                <div class="section-badge">Dúvidas</div>
+                <h2 class="section-title">Perguntas Frequentes</h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item scroll-reveal">
+                    <button class="faq-question">
+                        <span>Como funciona a criação personalizada?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        O processo começa com uma consulta onde discutimos suas ideias. Criamos esboços 3D para aprovação 
+                        e iniciamos a confecção artesanal.
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <button class="faq-question">
+                        <span>Vocês oferecem certificado?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Sim! Todas as joias acompanham certificado de autenticidade.
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <button class="faq-question">
+                        <span>É possível reformar joias antigas?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Absolutamente! Trabalhamos com restauração, ajustes e modernização.
+                    </div>
+                </div>
+                
+                <div class="faq-item scroll-reveal">
+                    <button class="faq-question">
+                        <span>Qual o prazo de entrega?</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Peças do estoque: entrega imediata. Ajustes: 2-5 dias. Personalizadas: 15-30 dias.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lumière Joias</h3>
+                    <p>Há mais de 25 anos criando joias que transcendem o tempo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Coleções</h3>
+                    <a href="#">Anéis de Compromisso</a>
+                    <a href="#">Alianças</a>
+                    <a href="#">Colares de Luxo</a>
+                    <a href="#">Brincos Exclusivos</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <a href="#">Av. Epitácio Pessoa, 1542</a>
+                    <a href="#">(83) 3344-5566</a>
+                    <a href="#">(83) 99988-7766</a>
+                    <a href="#">contato@lumierejoias.com.br</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Horários</h3>
+                    <p>Segunda a Sexta: 9h às 18h</p>
+                    <p>Sábados: 9h às 15h</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>2025 Lumière Joias. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            header.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-scale');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    if (a !== answer) {
+                        a.classList.remove('active');
+                        a.previousElementSibling.classList.remove('active');
+                    }
+                });
+                
+                answer.classList.toggle('active', !isActive);
+                button.classList.toggle('active', !isActive);
+            });
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const message = `Consultoria VIP\n\n${formData.get('nome')}\n${formData.get('email')}\n${formData.get('interesse')}\n${formData.get('telefone')}\n\n${formData.get('mensagem')}`;
+            
+            const whatsappURL = `https://wa.me/5583999887766?text=${encodeURIComponent(message)}`;
+            
+            const btn = this.querySelector('.submit-btn');
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecionando...';
+            
+            setTimeout(() => {
+                window.open(whatsappURL, '_blank');
+                this.reset();
+                btn.innerHTML = originalHTML;
+            }, 1500);
+        });
+
+        const testimonialsContainer = document.querySelector('.testimonials-container');
+        if (testimonialsContainer) {
+            let scrollInterval = setInterval(() => {
+                const maxScroll = testimonialsContainer.scrollWidth - testimonialsContainer.clientWidth;
+                if (testimonialsContainer.scrollLeft >= maxScroll) {
+                    testimonialsContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    testimonialsContainer.scrollBy({ left: 370, behavior: 'smooth' });
+                }
+            }, 5000);
+            
+            testimonialsContainer.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+            testimonialsContainer.addEventListener('mouseleave', () => {
+                scrollInterval = setInterval(() => {
+                    const maxScroll = testimonialsContainer.scrollWidth - testimonialsContainer.clientWidth;
+                    if (testimonialsContainer.scrollLeft >= maxScroll) {
+                        testimonialsContainer.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        testimonialsContainer.scrollBy({ left: 370, behavior: 'smooth' });
+                    }
+                }, 5000);
+            });
+        }
+
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            const isVisible = navLinks.style.display === 'flex';
+            
+            if (isVisible) {
+                navLinks.style.display = 'none';
+                this.innerHTML = '<i class="fas fa-bars"></i>';
+            } else {
+                navLinks.style.display = 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(26, 21, 16, 0.98)';
+                navLinks.style.padding = '2rem';
+                navLinks.style.zIndex = '999';
+                this.innerHTML = '<i class="fas fa-times"></i>';
+            }
+        });
+
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            }
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>
